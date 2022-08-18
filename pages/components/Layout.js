@@ -5,7 +5,7 @@ const Layout = ({ children }) => {
   return (
     <div>
       <Navbar />
-      <main className="container mx-auto">{children}</main>
+      <main className="container mx-auto sm:container">{children}</main>
     </div>
   );
 };
