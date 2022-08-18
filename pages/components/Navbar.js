@@ -11,6 +11,25 @@ const Navbar = () => {
               Coastal Stay Message Board
             </p>
           </Link>
+
+          <div className="flex gap-5">
+            <a
+              href="https://www.facebook.com/coastalstay"
+              className="bg-white hover:text-red-300 rounded shadow lg:p-2 md:p-1 p-0.5 text-xs flex justify-center items-center "
+              target="_blank"
+              rel="noreferrer"
+            >
+              Facebook
+            </a>
+            <a
+              href="https://www.instagram.com/coastalstay/"
+              className="bg-white hover:text-red-300 rounded shadow lg:p-2 md:p-1 p-0.5 text-xs flex justify-center items-center "
+              target="_blank"
+              rel="noreferrer"
+            >
+              Instagram
+            </a>
+          </div>
         </div>
       </div>
     </nav>

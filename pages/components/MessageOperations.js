@@ -4,6 +4,7 @@ import { app, database } from '../../firebaseConfig';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { redirect } from 'next/dist/server/api-utils';
 import { useRouter } from 'next/router';
+import firebase from 'firebase/app';
 import Link from 'next/link';
 
 const MessageOperations = () => {
@@ -18,7 +19,7 @@ const MessageOperations = () => {
       error.classList.remove('hidden');
     } else {
       error.classList.add('hidden');
-      let today = new Date().toLocaleDateString();
+      let today = new Date().toLocaleString();
       addDoc(dbInstance, {
         message_title: messageTitle,
         message_content: messageContent,
@@ -32,10 +33,13 @@ const MessageOperations = () => {
   return (
     <div>
       <Link href="/">
-        <button> Back to posts</button>
+        <button className="bg-blue-400 hover:bg-blue-300 text-white p-2 rounded shadow m-3">
+          {' '}
+          Back to posts
+        </button>
       </Link>
       <div className="w-full mx-auto my-10 max-w-lg">
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <form className="bg-white shadow-md rounded px-4 pt-6 pb-8 mb-4 m-5">
           <div id="error" className="hidden text-xs text-orange-400">
             Oops! You have to provide some content
           </div>

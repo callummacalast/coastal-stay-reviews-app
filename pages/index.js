@@ -1,6 +1,14 @@
 import { app, database } from '../firebaseConfig';
 
-import { getDocs, collection, query, where, limit } from 'firebase/firestore';
+import {
+  getDocs,
+  collection,
+  query,
+  where,
+  limit,
+  orderBy,
+  Firestore,
+} from 'firebase/firestore';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,7 +20,7 @@ export default function Home() {
   const [messageArray, setMessageArray] = useState([]);
 
   const getMessages = () => {
-    getDocs(dbInstance).then((data) => {
+    getDocs(query(dbInstance, orderBy('created_at', 'desc'))).then((data) => {
       setMessageArray(
         data.docs.map((item) => {
           return { ...item.data(), id: item.id };
@@ -38,9 +46,9 @@ export default function Home() {
           return (
             <div
               key={message.id}
-              className="shadow bg-blue-100 p-3 rounded w-full cursor-pointer h-auto relative"
+              className="shadow bg-gray-200 p-3 rounded w-full cursor-pointer h-auto relative"
             >
-              <span className="text-xs absolute right-2 top-2 text-red-400">
+              <span className="text-xs absolute right-2 top-2 text-blue-400">
                 {message.created_at}
               </span>
 
@@ -58,7 +66,7 @@ export default function Home() {
       </div>
 
       <Link href="/create-message">
-        <button className="bg-blue-400 hover:bg-blue-300 shadow p-2 rounded fixed bottom-10 text-white right-10">
+        <button className="bg-blue-400 hover:bg-blue-300 shadow p-3 rounded fixed bottom-3 text-white right-3">
           Leave a message
         </button>
       </Link>
